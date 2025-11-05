@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Laundering Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Money Laundering Detection System</h1>
+            <p>AI-Powered Transaction Analysis</p>
+        </header>
+
+        <div class="control-panel">
+            <label for="userSelect">Select User:</label>
+            <select id="userSelect">
+                <option value="">Loading users...</option>
+            </select>
+            <button id="analyzeBtn">Analyze Transactions</button>
+        </div>
+
+        <div id="loadingSpinner" class="spinner hidden">Analyzing...</div>
+
+        <div id="resultsSection" class="hidden">
+            <!-- Risk Assessment Card -->
+            <div class="card risk-card">
+                <h2>🚨 Risk Assessment</h2>
+                <div class="risk-display">
+                    <div class="risk-score" id="riskScore">0</div>
+                    <div class="risk-level" id="riskLevel">LOW</div>
+                </div>
+                <div id="flagsList" class="flags-list"></div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Transactions</h3>
+                    <p class="stat-value" id="totalTxn">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Average Amount</h3>
+                    <p class="stat-value" id="avgAmount">$0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Transactions/Day</h3>
+                    <p class="stat-value" id="txnPerDay">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Near Threshold</h3>
+                    <p class="stat-value" id="nearThreshold">0</p>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3>Daily Spending Pattern</h3>
+                    <canvas id="dailyChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Transaction Type Breakdown</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Transactions Table -->
+            <div class="card">
+                <h3>Recent Transactions</h3>
+                <div class="table-container">
+                    <table id="transactionsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
